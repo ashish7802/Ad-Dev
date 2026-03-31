@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
   <style>
     @property --border-angle {
       syntax: '<angle>';
@@ -427,80 +426,6 @@
     }
     .service-tag:hover { border-color: rgba(var(--accent-rgb), 0.3); color: var(--accent); }
 
-    .team-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 2rem; margin-top: 3rem;
-    }
-    .team-card {
-      position: relative; border-radius: var(--radius);
-      background: var(--border); transition: box-shadow 0.5s;
-    }
-    .team-card:hover { box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.06); }
-    .team-card-glow {
-      position: absolute; inset: 0; border-radius: var(--radius);
-      overflow: hidden; z-index: 0; opacity: 0; transition: opacity 0.6s;
-    }
-    .team-card-glow::before {
-      content: ''; position: absolute; inset: -100%;
-      background: conic-gradient(
-        from var(--border-angle, 0deg),
-        transparent 15%, rgba(var(--accent-rgb), 0.4) 35%,
-        var(--accent) 50%, rgba(var(--accent-rgb), 0.4) 65%, transparent 85%
-      );
-    }
-    .team-card:hover .team-card-glow { opacity: 1; }
-    .team-card:hover .team-card-glow::before {
-      animation: spin-gradient 4s linear infinite;
-    }
-    @keyframes spin-gradient { to { --border-angle: 360deg; } }
-    .team-card-inner {
-      position: relative; margin: 1px;
-      border-radius: calc(var(--radius) - 1px);
-      background: var(--bg); padding: 2.5rem;
-      z-index: 1; transition: background 0.5s;
-    }
-    .team-card:hover .team-card-inner { background: rgba(var(--accent-rgb), 0.015); }
-    .avatar { width: 72px; height: 72px; position: relative; margin-bottom: 1.5rem; }
-    .avatar-ring {
-      position: absolute; inset: 0; border-radius: 18px;
-      background: linear-gradient(135deg, var(--accent), rgba(var(--accent-rgb), 0.1));
-      transition: transform 0.5s cubic-bezier(0.25,1,0.5,1);
-    }
-    .team-card:hover .avatar-ring { transform: rotate(90deg) scale(1.08); }
-    .avatar-text {
-      position: absolute; inset: 2.5px; border-radius: 15px;
-      background: var(--bg); display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-size: 1.25rem;
-      font-weight: 900; color: var(--accent); z-index: 1; transition: background 0.5s;
-    }
-    .team-card:hover .avatar-text { background: rgba(var(--accent-rgb), 0.04); }
-    .team-name {
-      font-family: var(--font-display); font-size: 1.3rem;
-      font-weight: 900; margin-bottom: 0.15rem;
-    }
-    .team-role {
-      font-size: 0.82rem; font-weight: 600; color: var(--accent);
-      margin-bottom: 1rem; letter-spacing: 0.02em;
-    }
-    .team-bio {
-      font-size: 0.88rem; color: var(--text-sec);
-      margin-bottom: 0.6rem; line-height: 1.7; font-weight: 300;
-    }
-    .team-tagline {
-      font-size: 0.72rem; font-weight: 500; color: var(--text-muted);
-      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem;
-    }
-    .team-link {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.85rem; font-weight: 600;
-      color: var(--text-sec); transition: color 0.25s, gap 0.3s;
-    }
-    .team-link:hover { color: var(--accent); gap: 0.8rem; }
-    .team-link svg {
-      width: 15px; height: 15px; stroke: currentColor;
-      stroke-width: 2; fill: none;
-    }
-
     .contact-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 5rem; margin-top: 3rem;
@@ -644,7 +569,6 @@
       .hero-cta { flex-direction: column; }
       .hero-cta .btn { width: 100%; justify-content: center; }
       .hero-trust { flex-wrap: wrap; gap: 0.8rem; }
-      .team-grid { grid-template-columns: 1fr; }
       .scroll-indicator { display: none; }
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
@@ -679,7 +603,6 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#team">Team</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
@@ -692,7 +615,6 @@
     <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#services">Services</a>
-    <a href="#team">Team</a>
     <a href="#contact">Contact</a>
   </div>
 
@@ -857,51 +779,6 @@
       </div>
     </section>
 
-    <section id="team" class="section">
-      <div class="container">
-        <div class="reveal">
-          <div class="section-label">The People</div>
-          <h2 class="section-heading">Meet the team<br>behind the code.</h2>
-        </div>
-        <div class="team-grid">
-          <div class="team-card reveal" data-tilt data-tilt-max="6" data-tilt-glare="true" data-tilt-max-glare="0.12" data-tilt-speed="500">
-            <div class="team-card-glow"></div>
-            <div class="team-card-inner">
-              <div class="avatar">
-                <div class="avatar-ring"></div>
-                <div class="avatar-text">AY</div>
-              </div>
-              <div class="team-name">Ashish Yadav</div>
-              <div class="team-role">Co-Founder &amp; CEO</div>
-              <div class="team-bio">Leads strategy, client partnerships, and project vision. Passionate about building digital products that create real business impact.</div>
-              <div class="team-tagline">Strategy &middot; Vision &middot; Growth</div>
-              <a href="https://in.linkedin.com/in/ashish-yadav-ab206124a" target="_blank" class="team-link">
-                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-                Connect on LinkedIn
-              </a>
-            </div>
-          </div>
-          <div class="team-card reveal" data-tilt data-tilt-max="6" data-tilt-glare="true" data-tilt-max-glare="0.12" data-tilt-speed="500">
-            <div class="team-card-glow"></div>
-            <div class="team-card-inner">
-              <div class="avatar">
-                <div class="avatar-ring"></div>
-                <div class="avatar-text">SA</div>
-              </div>
-              <div class="team-name">Shane Alam</div>
-              <div class="team-role">Co-Founder &amp; CTO</div>
-              <div class="team-bio">Architects technical solutions and ensures every project ships with clean, scalable code. Obsessed with performance and best practices.</div>
-              <div class="team-tagline">Architecture &middot; Performance &middot; Quality</div>
-              <a href="https://www.linkedin.com/in/shane-alam-a3615a38a/" target="_blank" class="team-link">
-                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-                Connect on LinkedIn
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="contact" class="section" style="background:var(--bg-alt)">
       <div class="container">
         <div class="reveal">
@@ -982,7 +859,6 @@
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#services">Services</a>
-            <a href="#team">Team</a>
             <a href="#contact">Contact</a>
           </div>
           <div class="footer-col">
@@ -1026,7 +902,7 @@
         const size = Math.max(4, 8 - i * 1.2);
         el.style.width = size + 'px';
         el.style.height = size + 'px';
-        el.style.background = `rgba(0,212,255,${0.15 - i * 0.025})`;
+        el.style.background = 'rgba(0,212,255,' + (0.15 - i * 0.025) + ')';
         document.body.appendChild(el);
         trailEls.push(el);
         trailHistory.push({ x: 0, y: 0 });
@@ -1156,10 +1032,10 @@
       draw() {
         ctx.save();
         ctx.shadowBlur = 20;
-        ctx.shadowColor = `rgba(0,212,255,${this.a * 0.6})`;
+        ctx.shadowColor = 'rgba(0,212,255,' + (this.a * 0.6) + ')';
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0,212,255,${this.a})`;
+        ctx.fillStyle = 'rgba(0,212,255,' + this.a + ')';
         ctx.fill();
         ctx.restore();
       }
@@ -1177,7 +1053,7 @@
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(0,212,255,${a})`;
+            ctx.strokeStyle = 'rgba(0,212,255,' + a + ')';
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -1196,9 +1072,7 @@
     /* ═══ HERO TEXT REVEAL ═══ */
     const heroTl = gsap.timeline({ delay: 0.4 });
     document.querySelectorAll('.hero-word-inner').forEach((el, i) => {
-      heroTl.to(el, {
-        x: 0, duration: 0.9, ease: 'power3.out'
-      }, i * 0.12);
+      heroTl.to(el, { x: 0, duration: 0.9, ease: 'power3.out' }, i * 0.12);
     });
     heroTl.to('.hero-badge', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.5');
     heroTl.to('.hero-desc', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.35');
@@ -1264,13 +1138,6 @@
       if (first) first.querySelector('.service-header').click();
     }, 150);
 
-    /* ═══ VANILLA TILT ═══ */
-    if (!isTouch) {
-      VanillaTilt.init(document.querySelectorAll('.team-card'), {
-        max: 6, speed: 500, glare: true, 'max-glare': 0.12
-      });
-    }
-
     /* ═══ SCROLL PROGRESS ═══ */
     const progressBar = document.getElementById('scrollProgress');
     window.addEventListener('scroll', () => {
@@ -1323,7 +1190,7 @@
       let valid = true;
       inputs.forEach(input => { if (!input.value.trim()) valid = false; });
       if (valid) {
-        showToast('Message sent! We\'ll get back to you within 24 hours.');
+        showToast("Message sent! We'll get back to you within 24 hours.");
         e.target.reset();
       }
     });
